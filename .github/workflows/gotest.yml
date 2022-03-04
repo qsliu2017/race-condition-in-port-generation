@@ -1,0 +1,16 @@
+name: go test
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  go-test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+      - run: go test -v ./...
